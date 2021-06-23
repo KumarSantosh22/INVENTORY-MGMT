@@ -47,7 +47,7 @@ Create table shop(
 );
 ```
 
-# Inserting Values Into Table
+# Creating and Inserting Values Into Table
 
 ```sql
 CREATE TABLE `rmVn4RoTHT`.`shop` ( `iid` INT NOT NULL ,  `name` VARCHAR(50) NOT NULL ,  `description` VARCHAR(250) NOT NULL ,  `price` DECIMAL NOT NULL ,  `stock` INT NOT NULL ,  `total` DECIMAL NOT NULL ,  `reoder_level` INT NOT NULL ) ENGINE = InnoDB;
@@ -67,3 +67,19 @@ SET total = price * stock
 > To drop a tigger use
 
 `DROP TRIGGER shop_total_val`
+
+
+# Creating a Record Table
+```sql
+Create table record(
+    bill_id int not null primary key auto_increment,
+    c_name varchar(100) not null,
+    description varchar(250)  not null,
+    unit_price int not null,
+    qty int not null,
+    total_bill int not null,
+    user_name varchar(100) not null
+);
+```
+
+```Author : @kumarsantosh22```
