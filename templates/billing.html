@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{%block title %} ims | billing {% endblock %}
+{%block css %}
+<style>
+    .mybillarea {
+        font-size: 16px;
+        border: 2px solid #000;
+        margin: 1em;
+        padding: 1em;
+    }
+
+    td {
+        background-color: rgb(226, 228, 229);
+        margin-bottom: .5rem;
+        border-bottom: 2px solid #fff;
+    }
+
+    #p01 {
+        font-size: 18px;
+        text-align: center;
+        border-bottom: 1px dashed #000;
+    }
+
+    label {
+        margin: .4em 0px;
+    }
+</style>
+{% endblock %}
+{% block billactive %}active{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h2>Bill Management System</h2>
+    <div class="mybillarea container">
+        <p id="p01">COVID VACCINATIION CENTRE
+            <br> Helpline 0120-2727654, 9876543210
+        </p>
+        <label for="cname">Bill No :&emsp; </label><input type="text" id="cno" value=" ">
+        <label for="cname">Customer Name:&emsp; </label><input type="text" id="cname" value=" ">
+
+        <!-- **************************Search box********************* -->
+        <div class="my-4">
+            <h4>Enter the Inventory ID : </h4>
+
+            <form action="/billing" method="POST">
+
+                <label for="iid">Inventory Id:&emsp; </label>
+                <input type="text" id="iid" name="iid" />
+
+                <button type="submit" class="btn btn-primary btn-group-toggle btn-sm"><i class="fa fa-search"
+                        aria-hidden="true"></i></button>
+            </form>
+        </div>
+
+        <div>
+            <h3>Product Details : &emsp;</h3>
+            <table style="width:100%">
+                <tr>
+                    <th>Inventory ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Unit Price</th>
+                    <th>In Stock</th>
+                    <th>Order Quantity</th>
+                </tr>
+
+                {% if item %}
+
+                <form action="/billing" method="POST">
+                <tr>
+                    <td><input readonly name="iid" type="text" value="{{item[0]}}"></td>
+                    <td><input readonly name="name" type="text" value="{{item[1]}}"></td>
+                    <td><input readonly name="desc" type="text" value="{{item[2]}}"></td>
+                    <td><input id="price-01" readonly name="unitprice" type="text" value="{{item[3]}}"></td>
+                    <td><input readonly id="stock-01" name="stock" type="number" value="{{item[4]}}"></td>
+                    <td><input id="qty-01" name="total_qty" type="number" value="1"></td>
+                </tr>
+               
+                {% endif %}
+
+                <tr>
+                    <td><button class="btn btn-primary btn-group-toggle" id="buy-btn">Buy</button>
+                    </td>
+                </tr>
+    
+                </form>
+                <td><button class="btn btn-primary btn-group-toggle" id="total-btn">Total</button>
+                </td>
+                
+                <td>
+                    <input type="text" name="totalsum" id="totalsum" readonly placeholder="Total Amount">
+                </td>
+            </table>
+        </div>
+        
+    </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $("#total-btn").click(function () {
+        console.log("clicked...");
+        var price = document.getElementById("price-01").value; 
+        var stock = document.getElementById("price-01").value;
+        var qty = document.getElementById("qty-01").value;
+
+        if(qty > stock){
+            alert("Order quantity should not exceed Stock quantity.");
+        }
+
+        console.log(price)
+        console.log(qty)
+        console.log(stock);
+        
+        var total = parseInt(price) * parseInt(qty)
+        console.log("Total val")
+        console.log(total)
+
+        $('#totalsum').val('');
+        $("#totalsum").val(total.toString());
+    })
+</script>
+{% endblock %}
