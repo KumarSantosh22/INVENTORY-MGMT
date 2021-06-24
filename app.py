@@ -370,14 +370,27 @@ def billing():
             iid = request.form.get('iid')
             qty = request.form.get('total_qty')
             stock = request.form.get('stock')
+            bill_id = request.form.get('bill')
+            cust_name = request.form.get('cust_name')
+            description = ""
+            unit_price = request.form.get('unitprice')
+            total_bill = request.form.get('totalsum')
+            user_name = session.get('username')
+            print(f'Total bill : {total_bill}')
+            
             if iid and qty:
                 stock=int(stock)-int(qty)
                 cursor = mysql.connection.cursor()
                 cursor.execute('UPDATE shop set stock=%s WHERE iid=%s', (stock,iid))
+               
+
+                cursor.execute('INSERT INTO record (bill_id, cust_name, description, unit_price, qty, total_bill, user_name) VALUES (%s, %s, %s, %s, %s, %s, %s)',
+                               (bill_id, cust_name, description, unit_price, qty, total_bill, user_name))
                 mysql.connection.commit()
+
                 subject = 'BILLING INFO'
                 to_mail = session.get('email')
-                message = f"Hey{username} Thank for shopping with us. Stay healthy and safe at your home."
+                message = f"Hey{user_name} Thank for shopping with us. Stay healthy and safe at your home."
                 sendmail(subject,message,to_mail)
                 msg = 'Thank you for shopping with us. STAY HOME STAY SAFE'
                 return render_template('billing.html', msg=msg)

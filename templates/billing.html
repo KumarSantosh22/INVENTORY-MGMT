@@ -36,8 +36,6 @@
         <p id="p01">COVID VACCINATIION CENTRE
             <br> Helpline 0120-2727654, 9876543210
         </p>
-        <label for="bill_id-01">Bill No :&emsp; </label><input name="bill" type="text" id="bill_id-01" value=" " readonly>
-        <label for="cname">Customer Name:&emsp; </label><input type="text" id="cname" value=" ">
 
         <!-- **************************Search box********************* -->
         <div class="my-4">
@@ -69,6 +67,10 @@
 
                 <form action="/billing" method="POST">
                 <tr>
+                    <label for="bill_id-01">Bill No :&emsp; </label><input name="bill" type="text" id="bill_id-01" value=" "
+                        readonly>
+                    <label for="cust_name">Customer Name:&emsp; </label><input type="text" name="cust_name" id="cust_name"
+                        value=" ">
                     <td><input readonly name="iid" type="text" value="{{item[0]}}"></td>
                     <td><input readonly name="name" type="text" value="{{item[1]}}"></td>
                     <td><input readonly name="desc" type="text" value="{{item[2]}}"></td>
@@ -80,6 +82,9 @@
                 {% endif %}
 
                 <tr>
+                    <td>
+                        <input type="text" name="totalsum" id="totalsum" readonly placeholder="Total Amount">
+                    </td>
                     <td><button class="btn btn-primary btn-group-toggle" id="buy-btn">Buy</button>
                     </td>
                 </tr>

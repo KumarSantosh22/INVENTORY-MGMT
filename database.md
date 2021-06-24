@@ -72,11 +72,11 @@ SET total = price * stock
 # Creating a Record Table
 ```sql
 Create table record(
-    bill_id char(22),
-    c_name varchar(100) not null,
-    description varchar(250)  not null,
-    unit_price int not null,
-    qty int not null,
+    bill_id char(16) not null,
+    cust_name varchar(100),
+    description varchar(250),
+    unit_price int,
+    qty int,
     total_bill int not null,
     user_name varchar(100) not null
 );
