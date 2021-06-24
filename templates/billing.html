@@ -36,7 +36,7 @@
         <p id="p01">COVID VACCINATIION CENTRE
             <br> Helpline 0120-2727654, 9876543210
         </p>
-        <label for="cname">Bill No :&emsp; </label><input type="text" id="cno" value=" ">
+        <label for="bill_id-01">Bill No :&emsp; </label><input name="bill" type="text" id="bill_id-01" value=" " readonly>
         <label for="cname">Customer Name:&emsp; </label><input type="text" id="cname" value=" ">
 
         <!-- **************************Search box********************* -->
@@ -103,6 +103,12 @@
 
 {% block js %}
 <script>
+    var prefix = "ims"
+    Date.now()
+    word = Date.now().toString()
+    bill_id = prefix + word
+     $("#bill_id-01").val(bill_id);
+
     $("#total-btn").click(function () {
         console.log("clicked...");
         var price = document.getElementById("price-01").value; 

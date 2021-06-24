@@ -72,7 +72,7 @@ SET total = price * stock
 # Creating a Record Table
 ```sql
 Create table record(
-    bill_id int not null primary key auto_increment,
+    bill_id char(22),
     c_name varchar(100) not null,
     description varchar(250)  not null,
     unit_price int not null,
