@@ -12,11 +12,11 @@ def sendmail(subject, message, to_mail):
             {
                 "From": {
                     "Email": "17h61a04m8@cvsr.ac.in",
-                    "Name": "Vaccination Inventory"              },
+                    "Name": "Inventory Mgmt System"              },
                 "To": [
                     {
                         "Email": to_mail,
-                        "Name": "Mithali"
+                        "Name": "Name"
                     }
                 ],
                 "Subject": subject,
